@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BookRental.Data;
 using BookRental.Models;
+using System.Security.Cryptography.Xml;
 
 namespace BookRental.Pages.Book
 {
@@ -20,13 +21,20 @@ namespace BookRental.Pages.Book
         }
 
         public IList<Books> Books { get;set; } = default!;
+       
+        [BindProperty(SupportsGet = true)]
+        public string? SearchString { get; set; }
 
         public async Task OnGetAsync()
         {
-            if (_context.Books != null)
+            var books = from x in _context.Books select x; 
+            
+            if(!string.IsNullOrEmpty(SearchString))
             {
-                Books = await _context.Books.ToListAsync();
+                books = books.Where(s => s.Title != null && s.Title.Contains(SearchString) || s.Author != null && s.Author.Contains(SearchString) || s.Genre != null && s.Genre.Contains(SearchString));
             }
+            Books = await books.ToListAsync();
         }
+
     }
 }
