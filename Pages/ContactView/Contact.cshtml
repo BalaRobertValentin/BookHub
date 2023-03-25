@@ -1,0 +1,92 @@
+﻿@page
+@model BookRental.Pages.ContactView.ContactModel
+
+@{
+    ViewData["Title"] = "Contact";
+}
+<link rel="stylesheet" href="~/css/contact.css" asp-append-version="true" />
+
+<section id="contact">
+    <h1 class="section-header">Contact</h1>
+    <div class="contact-wrapper">
+        <form id="contact-form" class="form-horizontal" role="form" method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+               
+                <input type="text" asp-for="Contact.Name" class="form-control" id="name" placeholder="NAME" name="name" value="" required>
+                <span asp-validation-for="Contact.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+
+                <input type="email" asp-for="Contact.Email" class="form-control" id="email" placeholder="EMAIL" name="email" value="" required>
+                <span asp-validation-for="Contact.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+       
+                <textarea asp-for="Contact.Message" class="form-control" rows="10" placeholder="MESSAGE" name="message" required></textarea>
+                <span asp-validation-for="Contact.Message" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary send-button" id="submit" type="submit" value="SEND">
+                    <div class="alt-send-button">
+                        <img class="iconSend" src="~/svg/send.svg" alt="send icon" class="send-icon">
+                        <span class="send-text">SEND</span>
+                    </div>
+                </button>
+            </div>
+
+        </form>
+            <div class="direct-contact-container">
+
+                <ul class="contact-list">
+                    <li class="list-item"><img class="icon" src="~/svg/location.svg"><span class="contact-text place">Craiova, Romania</span></li>
+
+                    <li class="list-item"><img class="icon" src="~/svg/phone.svg"><span class="contact-text phone"><a href="tel:1-212-555-5555" title="Give me a call">(212) 555-2368</a></span></li>
+
+                    <li class="list-item"><img class="icon" src="~/svg/mail.svg"><span class="contact-text gmail"><a href="mailto:#" title="Send me an email">BookReserve@gmail.com</a></span></li>
+
+                </ul>
+
+                <hr>
+                <ul class="social-media-list">
+                    <li>
+                        <a href="https://github.com/BalaRobertValentin" target="_blank" class="contact-icon">
+                            <img class="icon" src="~/svg/github.svg" alt="Github">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/robert-b%C4%83l%C4%83-000982165/" target="_blank" class="contact-icon">
+                            <img class="icon" src="~/svg/linkedin.svg" alt="Codepen">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/" target="_blank" class="contact-icon">
+                            <img class="icon" src="~/svg/twitter.svg" alt="Twitter">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/" target="_blank" class="contact-icon">
+                            <img class="icon" src="~/svg/instagram.svg" alt="Instagram">
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+
+                <div class="copyright">
+                    &copy; ALL OF THE RIGHTS RESERVED
+                </div>
+
+            </div>
+    </div>
+</section>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
