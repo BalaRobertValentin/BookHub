@@ -1,16 +1,16 @@
 ﻿@page
+@using BookRental.Models;
 @model BookRental.Pages.Book.EditModel
 
 @{
     ViewData["Title"] = "Edit";
 }
+<link rel="stylesheet" href="~/css/EditBook.css" asp-append-version="true" />
+<h1>Edit Book</h1>
 
-<h1>Edit</h1>
-
-<h4>Books</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6 mx-auto">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -35,7 +35,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="Books.Genre" class="control-label"></label>
-                <input asp-for="Books.Genre" class="form-control" />
+                <select asp-for="Books.Genre" class="form-control" asp-items="Html.GetEnumSelectList<Genre>()">
+                    <option value="">Select a Language</option>
+                </select>
                 <span asp-validation-for="Books.Genre" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -60,7 +62,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="Books.Language" class="control-label"></label>
-                <input asp-for="Books.Language" class="form-control" />
+                <select asp-for="Books.Language" class="form-control" asp-items="Html.GetEnumSelectList<Language>()">
+                    <option value="">Select a Language</option>
+                </select>
                 <span asp-validation-for="Books.Language" class="text-danger"></span>
             </div>
             <input type="hidden" asp-for="Books.Id" />
@@ -72,7 +76,7 @@
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a class="backlist" asp-page="./Index">Back to List</a>
 </div>
 
 @section Scripts {

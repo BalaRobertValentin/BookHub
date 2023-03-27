@@ -31,9 +31,16 @@ namespace BookRental.Pages.Book
             
             if(!string.IsNullOrEmpty(SearchString))
             {
-                books = books.Where(s => s.Title != null && s.Title.Contains(SearchString) || s.Author != null && s.Author.Contains(SearchString) || s.Genre != null && s.Genre.Contains(SearchString));
+                books = books.Where(s => s.Title != null && s.Title.Contains(SearchString) || s.Author != null && s.Author.Contains(SearchString));
             }
             Books = await books.ToListAsync();
+        }
+
+        public string GetShortDescription(string? description)
+        {
+            const int maxLength = 100;
+            if (string.IsNullOrEmpty(description)) return string.Empty;
+            return description.Length <= maxLength ? description : description.Substring(0, maxLength) + "...";
         }
 
     }

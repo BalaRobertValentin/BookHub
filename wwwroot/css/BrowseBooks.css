@@ -1,0 +1,102 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 80px;
+    padding: 10px;
+    padding-top: 100px;
+}
+
+.book-item {
+    background-color: #eef1f4;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .book-item img {
+        max-width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+    }
+
+    .book-item h3 {
+        font-size: 25px;
+        color: black;
+        font-weight: bold;
+        margin: 15px 0 5px;
+    }
+
+    .book-item p {
+        font-weight: bold;
+        color: black;
+    }
+    .book-item a {
+        font-weight: bold;
+        color: white;
+    }
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.details-btn {
+    flex: 1;
+    margin: 0 5px;
+    background-color: rgba(0, 136, 169, 1);
+    border: none;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.delete-btn {
+    flex: 1;
+    margin: 0 5px;
+    background-color: darkred;
+    border: none;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.details-btn:hover {
+    background-color: #0056b3;
+    color: white;
+}
+.delete-btn:hover{
+    background-color: red;
+    color: white;
+}

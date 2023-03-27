@@ -4,96 +4,37 @@
 @{
     ViewData["Title"] = "Index";
 }
+<link rel="stylesheet" href="~/css/BrowseBooks.css" asp-append-version="true" />
 
-<h1>Index</h1>
+<body>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+    <p>
+        <a class="details-btn" asp-page="Create">Create New</a>
+    </p>
 
-<form asp-page="Index" method="get">
-    <div class="form-group">
-        <label for="searchString">Search:</label>
-        <input type="text" class="form-control" id="searchString" name="SearchString" value="@Model.SearchString" />
+    <form method="get">
+        <div class="input-group">
+            <input type="text" name="searchString" class="form-control" placeholder="Search for books" value="@ViewData["searchString"]">
+            <span class="input-group-btn">
+                <button class="btn btn-secondary search-btn" type="submit">Search</button>
+            </span>
+        </div>
+    </form>
+    <div class="boxes">
+        <div class="book-grid">
+            @foreach (var item in Model.Books)
+            {
+                <div class="book-item">
+                    <img class="icon" src="@Html.DisplayFor(modelItem => item.CoverImageUrl)">
+                    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+                    <p>@Html.DisplayFor(modelItem => item.Author)</p>
+                    <div class="button-container">
+                        <a class="details-btn" asp-page="./Details" asp-route-id="@item.Id">Reserve</a>
+                        <a class="details-btn" asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                        <a class="delete-btn" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary">Search</button>
-</form>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Books[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Books[0].Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Books[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Books[0].CoverImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Books[0].Genre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Books[0].RentalPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Books[0].Publisher)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Books[0].Year)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Books[0].Pages)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Books[0].Language)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Books) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CoverImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RentalPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Publisher)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pages)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Language)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+</body>
