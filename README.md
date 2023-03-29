@@ -1,21 +1,34 @@
 BookHub 📚
+
+
 BookHub is a sleek and modern ASP.NET Core MVC web application designed for efficient book library management. It offers essential features for book management, ensuring a seamless experience for users.
 
 🌟 Features
+
+
 List all books
 Add new books
 Edit existing books
 Delete books
 Search books by Title/Author
 
+
 🚀 Getting Started
+
+
 Follow these instructions to set up the project on your local machine for development and testing purposes.
 
 Prerequisites
+
+
 .NET 6.0 SDK or later: Download
+
 SQL Server (LocalDB) or another compatible SQL Server instance
 
+
 🛠 Installation
+
+
 1.Clone the repository:
 
 git clone https://github.com/BalaRobertValentin/BookHub.git
