@@ -28,7 +28,7 @@ header {
 
 }
 .navbar-brand img {
-    height: 60px; /* Decrease the height of the logo */
+    height: 80px; /* Decrease the height of the logo */
     width: auto;
     display: flex;
     align-items: center;

@@ -1,0 +1,32 @@
+﻿@page
+@model BookRental.Pages.Tools.IndexModel
+@{
+}
+<link rel="stylesheet" href="~/css/tools.css" asp-append-version="true" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <div class="geolocation">
+            <h1>Reveal your location</h1>
+            <button class="cta" onclick="getLocation()">Get Location</button>
+            <div id="location"></div>
+        </div>
+        <div class="LZW">
+            <h1>LZW Compression</h1>
+            <textarea id="inputText" rows="6" cols="50" placeholder="Enter text to compress"></textarea>
+            <br>
+            <button class="cta" onclick="compressText()">Compress</button>
+            <button class="cta" onclick="decompressText()">Decompress</button>
+            <br>
+            <textarea id="outputText" rows="6" cols="50" readonly></textarea>
+        </div>
+    </div>
+</body>
+<script src="~/js/geolocation.js" asp-append-version="true"></script>
+<script src="~/js/compression.js" asp-append-version="true"></script>
+</html>

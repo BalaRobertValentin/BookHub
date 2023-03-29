@@ -35,7 +35,7 @@ namespace BookRental.Pages.ContactView
             {
 				return RedirectToPage("/ContactView/Unconfirmed");
 			}
-
+        
             _context.Contact.Add(Contact);
             await _context.SaveChangesAsync();
 

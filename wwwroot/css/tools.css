@@ -1,0 +1,29 @@
+﻿body {
+    background-color: black;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: navajowhite;
+}
+    #location {
+    margin-top: 20px;
+    font-weight: bold;
+}
+.cta {
+    padding: 9px 25px;
+    background-color: rgba(0, 136, 169, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease 0s;
+}
+
+h1, textarea, button {
+    margin-bottom: 20px;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+}
+.geolocation{
+    padding-right: 500px;
+}
