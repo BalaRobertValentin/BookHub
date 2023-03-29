@@ -1,0 +1,130 @@
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: black;
+}
+
+.content-wrapper {
+    width: 100%;
+}
+
+img {
+    max-height: 150px;
+}
+
+.imgContainer img {
+    max-height: 500px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-bottom: 50px;
+    padding-top: 30px;
+}
+
+
+
+.slider {
+    display: flex;
+    justify-content: space-evenly;
+    overflow: hidden;
+    width: calc(100% / 3);
+    position: relative;
+    width: 100%;
+}
+
+    .slider img {
+        transition: transform 0.5s;
+    }
+
+.slider-controls {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+    .slider-controls button {
+        background-color: rgba(255, 255, 255, 0.7);
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+    }
+
+        .slider-controls button:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+p {
+    color: rgb(129, 109, 20);
+    font-weight: bold;
+}
+
+    p:last-of-type {
+        padding-top: 15px;
+        padding-bottom: 25px;
+        width: 25em;
+    }
+
+h1 {
+    color: rgb(255, 208, 0);
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.collapsed {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.btnslider {
+    padding: 9px 25px;
+    background-color: rgba(0, 136, 169, 1);
+    border: none;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease 0s;
+    font-weight: bold;
+}
+
+.btnslider:hover {
+        background-color: rgba(0, 136, 169, 0.8);
+        color: white;
+}
+
+.textContainer #btnslider {
+    width: 300px;
+}
+#prevBtn, #nextBtn {
+    padding: 9px 25px;
+    background-color: rgba(0, 136, 169, 1);
+    border: none;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease 0s;
+    font-weight: bold;
+}

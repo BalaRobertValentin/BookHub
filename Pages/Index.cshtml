@@ -1,10 +1,53 @@
 ﻿@page
 @model IndexModel
+@using BookRental.Models;
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/homepage.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="textContainer">
+                <h1>Book Rental Website </h1>
+                <p>Created by</p>
+                <p>Bala Robert-Valentin</p>
+                <p>
+                    Discover the joy of reading with BookHub, the ultimate online book rental destination. Our user-friendly platform offers an extensive collection of titles across various genres, catering to the diverse interests of book lovers everywhere.
+
+                    At BookHub, we believe that books have the power to inspire, educate, and entertain. That's why we are committed to providing a seamless and affordable book rental experience. Whether you're a fan of thrillers, romance, science fiction, or biographies, our vast library has something for everyone.
+
+                    With our easy-to-use search and filter options, you can quickly find your favorite titles, authors, or genres. Our convenient book rental system allows you to enjoy the books you love without the burden of building a large personal library.
+
+                    Become a member of the BookHub community and enjoy the benefits of our flexible rental plans, personalized recommendations, and exceptional customer support. Save space, save money, and satisfy your reading cravings with BookHub - your online home for book rentals.
+                </p>
+                <a class="btnslider" asp-area="" asp-page="/BookView/Index">See more books</a>
+            </div>
+            <div class="imgContainer">
+                <img src="~/svg/aaa.png" alt="Girl reading">
+            </div>
+        </div>
+ 
+        <div class="slider">
+            @foreach (var item in Model.Books)
+            {
+                <img class="icon" src="@Html.DisplayFor(modelItem => item.CoverImageUrl)">
+            }
+            <div class="slider-controls">
+                <button id="prevBtn">Previous</button>
+                <button id="nextBtn">Next</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="~/js/slider.js" asp-append-version="true"></script>
+</html>
+
