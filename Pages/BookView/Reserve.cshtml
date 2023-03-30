@@ -1,0 +1,43 @@
+﻿@page
+@using BookRental.Models;
+@model BookRental.Pages.BookView.ReserveModel
+@{
+}
+<link rel="stylesheet" href="~/css/CreateBook.css" asp-append-version="true" />
+<h1>Reserve your book "@Model.Books.Title"</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Client.Name" class="control-label"></label>
+                <input asp-for="Client.Name" class="form-control" />
+                <span asp-validation-for="Client.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.EmailAddress" class="control-label"></label>
+                <input asp-for="Client.EmailAddress" class="form-control" />
+                <span asp-validation-for="Client.EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.PhoneNumber" class="control-label"></label>
+                <input asp-for="Client.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Client.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Reserve" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="backlist" asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

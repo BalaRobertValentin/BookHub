@@ -12,6 +12,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     margin: 0;
+    padding-top: 150px;
     background-color: black;
 }
 
@@ -25,6 +26,9 @@ img {
 
 .imgContainer img {
     max-height: 500px;
+}
+.slider img{
+    filter: blur(3px);
 }
 
 .container {

@@ -29,7 +29,7 @@
                     <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
                     <p>@Html.DisplayFor(modelItem => item.Author)</p>
                     <div class="button-container">
-                        <a class="details-btn" asp-page="./Details" asp-route-id="@item.Id">Reserve</a>
+                        <a class="details-btn" asp-page="./Reserve" asp-route-id="@item.Id">Reserve</a>
                         <a class="details-btn" asp-page="./Details" asp-route-id="@item.Id">Details</a>
                         <a class="delete-btn" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
                     </div>
