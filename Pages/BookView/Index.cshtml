@@ -51,9 +51,12 @@
                             <img class="icon" src="@Html.DisplayFor(modelItem => item.CoverImageUrl)">
                             <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
                             <p>@Html.DisplayFor(modelItem => item.Author)</p>
-                            <p>Price @Html.DisplayFor(modelItem => item.RentalPrice)$ </p>
+                            <p>Price @Html.DisplayFor(modelItem => item.Price)$ </p>
                             <div class="button-container">
-                                <a class="details-btn" asp-page="./Reserve" asp-route-id="@item.Id">Reserve</a>
+                                <form method="post" class="add-to-cart-form">
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <button type="submit" asp-page-handler="AddToCart" class="details-btn">Buy</button>
+                                </form>
                                 <a class="details-btn" asp-page="./Details" asp-route-id="@item.Id">Details</a>
                                 <a class="delete-btn" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
                             </div>

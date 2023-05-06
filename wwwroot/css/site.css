@@ -24,3 +24,7 @@ body {
 .container {
     padding-top: 150px;
 }
+
+.cart-icon {
+    font-size: 24px; /* Adjust the size by changing this value */
+}

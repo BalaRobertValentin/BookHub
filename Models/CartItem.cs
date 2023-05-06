@@ -1,22 +1,11 @@
-﻿using BookRental.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
 
-namespace WingtipToys.Models
+namespace BookRental.Models
 {
     public class CartItem
     {
-        [Key]
-        public string? ItemId { get; set; }
-
-        public string? CartId { get; set; }
-
+        public Guid Id { get; set; }
+        public Books Book { get; set; }
         public int Quantity { get; set; }
-
-        public System.DateTime DateCreated { get; set; }
-
-        public int ProductId { get; set; }
-
-        public virtual Books? Product { get; set; }
-
     }
 }

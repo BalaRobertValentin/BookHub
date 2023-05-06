@@ -21,7 +21,7 @@ namespace BookRental.Models
         [Required]
         public Genre Genre { get; set; } 
 
-        public float RentalPrice { get; set; }
+        public float Price { get; set; }
 
         [Required]
         [StringLength(100, MinimumLength = 1)]

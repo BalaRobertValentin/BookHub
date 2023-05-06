@@ -3,17 +3,20 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BookRental.Models;
 using System.Globalization;
-
+using BookRental.Services;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 namespace BookRental.Pages.Book
 {
     public class IndexModel : PageModel
     {
         private readonly BookRental.Data.BookRentalContext _context;
+        private readonly CartService _cartService;
 
-        public IndexModel(BookRental.Data.BookRentalContext context)
+        public IndexModel(BookRental.Data.BookRentalContext context, CartService cartService)
         {
             _context = context;
+            _cartService = cartService;
         }
 
         public IList<Books> Books { get; set; } = default!;
@@ -36,10 +39,10 @@ namespace BookRental.Pages.Book
             switch (Sort?.ToLower())
             {
                 case "priceasc":
-                    books = books.OrderBy(s => s.RentalPrice);
+                    books = books.OrderBy(s => s.Price);
                     break;
                 case "pricedesc":
-                    books = books.OrderByDescending(s => s.RentalPrice);
+                    books = books.OrderByDescending(s => s.Price);
                     break;
                 case "newestbook":
                     books = books.OrderByDescending(s => s.Year);
@@ -49,6 +52,17 @@ namespace BookRental.Pages.Book
             }
 
             Books = await books.ToListAsync();
+        }
+        public async Task<IActionResult> OnPostAddToCartAsync(int id)
+        {
+            var book = await _context.Books.FindAsync(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            _cartService.AddBook(book, 1);
+            return RedirectToPage();
         }
 
         public string GetShortDescription(string? description)
