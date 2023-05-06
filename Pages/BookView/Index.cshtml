@@ -4,37 +4,63 @@
 @{
     ViewData["Title"] = "Index";
 }
+
 <link rel="stylesheet" href="~/css/BrowseBooks.css" asp-append-version="true" />
 
 <body>
-
-    <p>
-        <a class="details-btn" asp-page="Create">Create New</a>
-    </p>
-
-    <form method="get">
-        <div class="input-group">
-            <input type="text" name="searchString" class="form-control" placeholder="Search for books" value="@ViewData["searchString"]">
-            <span class="input-group-btn">
-                <button class="btn btn-secondary search-btn" type="submit">Search</button>
-            </span>
-        </div>
-    </form>
-    <div class="boxes">
-        <div class="book-grid">
-            @foreach (var item in Model.Books)
-            {
-                <div class="book-item">
-                    <img class="icon" src="@Html.DisplayFor(modelItem => item.CoverImageUrl)">
-                    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
-                    <p>@Html.DisplayFor(modelItem => item.Author)</p>
-                    <div class="button-container">
-                        <a class="details-btn" asp-page="./Reserve" asp-route-id="@item.Id">Reserve</a>
-                        <a class="details-btn" asp-page="./Details" asp-route-id="@item.Id">Details</a>
-                        <a class="delete-btn" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+    <div class="row justify-content-center">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-12">
+                    <p>
+                        <a class="btn btn-primary" asp-page="Create">Create New</a>
+                    </p>
+                </div>
+            </div>
+            <form method="get">
+                <div class="row">
+                    <div class="col-md-8 col-lg-6">
+                        <div class="input-group">
+                            <input type="text" name="searchString" class="form-control" placeholder="Search for books" value="@Model.SearchString">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-6">
+                        <div class="input-group">
+                            <select name="Sort" class="form-control" asp-for="Sort" onchange="this.form.submit()">
+                                <option value="priceAsc">Increasing price</option>
+                                <option value="priceDesc">Decreasing price</option>
+                                <option value="newestBook">Newest</option>
+                            </select>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">Sort</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            }
+            </form>
+            <hr>
+
+            <div class="boxes">
+                <div class="book-grid mx-auto">
+                    @foreach (var item in Model.Books)
+                    {
+                        <div class="book-item">
+                            <img class="icon" src="@Html.DisplayFor(modelItem => item.CoverImageUrl)">
+                            <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+                            <p>@Html.DisplayFor(modelItem => item.Author)</p>
+                            <p>Price @Html.DisplayFor(modelItem => item.RentalPrice)$ </p>
+                            <div class="button-container">
+                                <a class="details-btn" asp-page="./Reserve" asp-route-id="@item.Id">Reserve</a>
+                                <a class="details-btn" asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                                <a class="delete-btn" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -26,6 +26,27 @@
             <textarea id="outputText" rows="6" cols="50" readonly></textarea>
         </div>
     </div>
+
+    <section>
+        <h2>Audio</h2>
+        <audio controls>
+            <source src="files/audio.wav" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </section>
+
+    <section>
+        <h2>Video</h2>
+        <video controls>
+            <source src="files/video.mp4" type="video/mp4">
+            Your browser does not support the video element.
+        </video>
+    </section>
+
+    <section>
+        <h2>Podcast</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Gi9TAY1J-I8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
 </body>
 <script src="~/js/geolocation.js" asp-append-version="true"></script>
 <script src="~/js/compression.js" asp-append-version="true"></script>
