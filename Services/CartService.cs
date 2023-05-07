@@ -57,6 +57,20 @@ namespace BookRental.Services
 
             SetCartItems(cartItems);
         }
+        public void UpdateQuantity(Guid cartItemId, int newQuantity)
+        {
+            var cartItems = GetCartItems();
+            var cartItem = cartItems.FirstOrDefault(x => x.Id == cartItemId);
+
+            if (cartItem != null)
+            {
+                {
+                    cartItem.Quantity = newQuantity;
+                }
+            }
+
+            SetCartItems(cartItems);
+        }
 
         public decimal GetTotalCost()
         {
@@ -68,5 +82,6 @@ namespace BookRental.Services
         {
             return GetCartItems().AsReadOnly();
         }
+
     }
 }

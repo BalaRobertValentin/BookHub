@@ -3,39 +3,67 @@
 @{
     ViewData["Title"] = "Shopping Cart";
 }
+<link rel="stylesheet" href="~/css/Cart.css" asp-append-version="true" />
 
-<h2>Shopping Cart</h2>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Book Title</th>
-            <th>Author</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.CartItems)
-        {
+<div class="container ">
+    <table class="table rounded-table">
+        <thead>
             <tr>
-                <td>@item.Book.Title</td>
-                <td>@item.Book.Author</td>
-                <td>@item.Book.Price$</td>
-                <td>@item.Quantity</td>
-                <td>@(item.Book.Price * item.Quantity)$</td>
-                <td>
-                    <form method="post" asp-page-handler="RemoveFromCart">
-                        <input type="hidden" name="cartItemId" value="@item.Id" />
-                        <button type="submit" class="btn btn-danger">Remove</button>
-                    </form>
-                </td>
+                <th>Shopping Bag</th>
+                <th>Quantity</th>
+                <th>Price</th>
             </tr>
-        }
-    </tbody>
-</table>
-<p>
-    <strong>Total Cost:</strong> @Model.TotalCost$
-</p>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CartItems)
+            {
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <img class="coverBook m-4 rounded-3" src="@item.Book.CoverImageUrl" alt="Book Cover" />
+                        <div class="ml-3 AuthorTitle">
+                            <p class="">@item.Book.Title</p>
+
+                            <p class="">@item.Book.Author</p>
+                             <form method="post" asp-page-handler="RemoveFromCart">
+                                <button type="submit" name="cartItemId" value="@item.Id" class="btn btn-danger btn-sm me-1 mb-2 ">
+                                    <i class="fas fa-trash"> Remove </i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                    <td class="align-middle">
+                        <form method="post" asp-page-handler="UpdateQuantity">
+                            <input type="hidden" name="cartItemId" value="@item.Id" />
+                            <div class="d-flex mb-4" style="max-width: 300px">
+                                <button type="button" class="btn btn-primary quantity-control me-2"
+                                        onclick="{
+                                      this.parentNode.querySelector('input[name=newQuantity]').stepDown();
+                                      this.parentNode.querySelector('input[name=newQuantity]').dispatchEvent(new Event('change'));
+                                  }">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <div class="form-outline">
+                                    <input id="form1" min="1" name="newQuantity" value="@item.Quantity" type="number" class="form-control quantity-input" onchange="validateQuantityInput(this); this.form.submit();" />
+                                </div>
+                                <button type="button" class="btn btn-primary quantity-control ms-2"
+                                        onclick="{
+                                      this.parentNode.querySelector('input[name=newQuantity]').stepUp();
+                                      this.parentNode.querySelector('input[name=newQuantity]').dispatchEvent(new Event('change'));
+                                  }">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </td>
+                    <td class="align-middle">
+                        <p>@(item.Book.Price * item.Quantity)$</p>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p class="text-danger">
+        <strong>Total Cost:</strong> @Model.TotalCost$
+    </p>
+</div>
+<script src="~/js/validateQuantityInput.js" asp-append-version="true"></script>
