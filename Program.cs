@@ -4,6 +4,9 @@ using BookRental.Data;
 using BookRental.Services;
 using Microsoft.AspNetCore.Http;
 using System;
+using BookRental.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +23,14 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+
+builder.Services.AddDbContext<ApplicationIdentityDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationIdentityDbContext") ?? throw new InvalidOperationException("Connection string 'ApplicationIdentityDbContext' not found.")));
+
+// Include roles in the configuration
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationIdentityDbContext>();
 
 builder.Services.AddDbContext<BookRentalContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BookRentalContext") ?? throw new InvalidOperationException("Connection string 'BookRentalContext' not found.")));
@@ -41,6 +52,7 @@ app.UseRouting();
 
 app.UseSession();
 
+app.UseAuthentication(); // Use Authentication is necessary for Identity to work
 app.UseAuthorization();
 
 app.MapRazorPages();
