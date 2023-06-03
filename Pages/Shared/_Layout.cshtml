@@ -54,6 +54,10 @@
                     </span>
                     <span class="cart-count">@CartService.GetReadOnlyCartItems().Count</span>
                 </a>
+                <a class="cta m-lg-1" asp-area="" asp-page="/FavoriteItem/FavoriteItem">
+                    <span class="fas fa-heart"></span>
+                </a>
+                
             </div>
             <div>
                 @if (SignInManager.IsSignedIn(User))

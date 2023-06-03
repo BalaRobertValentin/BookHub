@@ -32,6 +32,8 @@ namespace BookRental.Pages.Cart
             _cartService.RemoveBook(cartItemId);
             return RedirectToPage();
         }
+
+
         public IActionResult OnPostUpdateQuantity(Guid cartItemId, int newQuantity)
         {
             _cartService.UpdateQuantity(cartItemId, newQuantity);

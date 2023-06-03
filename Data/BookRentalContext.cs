@@ -14,8 +14,10 @@ namespace BookRental.Data
         {
         }
 
-        public DbSet<BookRental.Models.Books> Books { get; set; } = default!;
+        public DbSet<Books> Books { get; set; } = default!;
 
-        public DbSet<BookRental.Models.Contact> Contact { get; set; } = default!;
+        public DbSet<Contact> Contact { get; set; } = default!;
+
+        public DbSet<FavoriteItem> FavoriteItems { get; set; }
     }
 }

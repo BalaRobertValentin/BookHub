@@ -1,0 +1,36 @@
+﻿@page
+@model BookRental.Pages.FavoriteItem.FavoriteItemModel
+<link rel="stylesheet" href="~/css/Cart.css" asp-append-version="true" />
+
+<table class="table rounded-table">
+    <thead>
+        <tr>
+            <th>Favorite Items</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FavoriteItems)
+        {
+            <tr>
+                <td class="d-flex align-items-center">
+                    <img class="coverBook m-4 rounded-3" src="@item.Book.CoverImageUrl" alt="Book Cover" />
+                    <div class="ml-3 AuthorTitle">
+                        <p class="">@item.Book.Title</p>
+
+                        <p class="">@item.Book.Author</p>
+                        <form method="post" asp-page-handler="Remove">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm me-1 mb-2">
+                                <i class="fas fa-trash"> Remove </i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+                <td class="align-middle">
+                    <p>@(item.Book.Price)$</p>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

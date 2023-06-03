@@ -34,6 +34,11 @@
                                     <i class="fas fa-trash"> Remove </i>
                                 </button>
                             </form>
+                            <form method="post" asp-page="/FavoriteItem/FavoriteItem" asp-page-handler="AddToFavorites" class="d-inline-block">
+                                <button type="submit" name="bookId" value="@item.Book.Id" class="btn btn-primary btn-sm me-1 mb-2 ">
+                                    <i class="fas fa-heart"> Favorite </i>
+                                </button>
+                            </form>
                         </div>
                     </td>
                     <td class="align-middle">

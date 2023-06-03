@@ -3,6 +3,7 @@ using BookRental.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookRental.Migrations
 {
     [DbContext(typeof(BookRentalContext))]
-    partial class BookRentalContextModelSnapshot : ModelSnapshot
+    [Migration("20230603130426_FavoriteItem")]
+    partial class FavoriteItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,7 +72,7 @@ namespace BookRental.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("BookRental.Models.Contact", b =>
@@ -91,7 +94,7 @@ namespace BookRental.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contact", (string)null);
+                    b.ToTable("Contact");
                 });
 
             modelBuilder.Entity("BookRental.Models.FavoriteItem", b =>
@@ -113,7 +116,7 @@ namespace BookRental.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("FavoriteItems", (string)null);
+                    b.ToTable("FavoriteItems");
                 });
 
             modelBuilder.Entity("BookRental.Models.FavoriteItem", b =>

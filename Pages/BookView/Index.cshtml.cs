@@ -33,6 +33,14 @@ namespace BookRental.Pages.Book
         [BindProperty(SupportsGet = true)]
         public string? Sort { get; set; } = "priceasc";
 
+        [BindProperty(SupportsGet = true)]
+        public string? LanguageSort { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? GenreSort { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int YearSort { get; set; }
+
         public async Task OnGetAsync(int currentPage = 1)
         {
             CurrentPage = currentPage;
@@ -41,6 +49,29 @@ namespace BookRental.Pages.Book
             if (!string.IsNullOrEmpty(SearchString))
             {
                 books = books.Where(s => s.Title != null && s.Title.Contains(SearchString) || s.Author != null && s.Author.Contains(SearchString));
+            }
+
+            if (!string.IsNullOrEmpty(LanguageSort))
+            {
+                if (Enum.TryParse(typeof(Language), LanguageSort, out var language))
+                {
+                    var languageValue = (int)language;
+                    books = books.Where(s => (int)s.Language == languageValue);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(GenreSort))
+            {
+                if (Enum.TryParse(typeof(Genre), GenreSort, out var genre))
+                {
+                    var genreValue = (int)genre;
+                    books = books.Where(s => (int)s.Genre == genreValue);
+                }
+            }
+
+            if (YearSort != 0)
+            {
+                books = books.Where(s => s.Year == YearSort);
             }
 
             switch (Sort?.ToLower())

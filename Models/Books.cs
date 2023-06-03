@@ -51,27 +51,37 @@ namespace BookRental.Models
     }
     public enum Genre
     {
+        [Display(Name = "Action And Adventure")]
         ActionAndAdventure,
         Biography,
         Childrens,
         Classics,
+        [Display(Name = "Comic And Graphic Novels")]
         ComicAndGraphicNovels,
+        [Display(Name = "Crime And Mystery")]
         CrimeAndMystery,
         Drama,
         Erotica,
         Fantasy,
+        [Display(Name = "Historical Fiction")]
         HistoricalFiction,
         Horror,
         Humor,
         LGBTQ,
+        [Display(Name = "Literary Fiction")]
         LiteraryFiction,
+        [Display(Name = "Non-Fiction")]
         NonFiction,
         Poetry,
         Romance,
+        [Display(Name = "Science Fiction")]
         ScienceFiction,
+        [Display(Name = "Short Stories")]
         ShortStories,
+        [Display(Name = "Thriller And Suspense")]
         ThrillerAndSuspense,
         Travel,
+        [Display(Name = "Young Adult")]
         YoungAdult
     }
 }
