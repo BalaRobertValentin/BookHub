@@ -80,15 +80,5 @@
     <p class="text-danger">
         <strong>Total Cost:</strong> @Model.TotalCost$
     </p>
-    <!-- Checkout Button -->
-    @if (Model.TotalCost > 0){
-        <form method="post" asp-page-handler="Checkout">
-            <button type="submit" class="btn btn-primary">
-                Checkout
-            </button>
-        </form>
-    }
-
-
 </div>
 <script src="~/js/validateQuantityInput.js" asp-append-version="true"></script>

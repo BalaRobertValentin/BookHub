@@ -19,61 +19,67 @@
                 </div>
             </div>
             <form method="get">
-                    <div class="row">
-                        <div class="col-md-8 col-lg-6">
-                            <div class="input-group">
-                                <input type="text" name="searchString" class="form-control text-white bg-dark" placeholder="Search for books" value="@Model.SearchString">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="submit">Search</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-6">
-                            <div class="input-group">
-                                <select name="Sort" class="form-control text-white bg-dark" asp-for="Sort" onchange="this.form.submit()">
-                                    <option value="priceAsc">Increasing price</option>
-                                    <option value="priceDesc">Decreasing price</option>
-                                    <option value="newestBook">Newest</option>
-                                </select>
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit">Sort</button>
-                                </div>
-                            </div>
+                <div class="row">
+                    <div class="col-md-8 col-lg-6">
+                        <div class="input-group">
+                            <input type="text" name="searchString" class="form-control" placeholder="Search for books" value="@Model.SearchString">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </span>
                         </div>
                     </div>
-                <hr>
-                    <div class="mb-3">
-                        <select name="LanguageSort" class="form-select text-white bg-dark" asp-for="LanguageSort" onchange="this.form.submit()">
-                            <option value="">All Languages</option>
-                            @foreach (var item in Enum.GetValues(typeof(BookRental.Models.Language)))
-                            {
-                                <option value="@item">@item</option>
-                            }
-                        </select>
+                    <div class="col-md-4 col-lg-6">
+                        <div class="input-group">
+                            <select name="Sort" class="form-control" asp-for="Sort" onchange="this.form.submit()">
+                                <option value="priceAsc">Increasing price</option>
+                                <option value="priceDesc">Decreasing price</option>
+                                <option value="newestBook">Newest</option>
+                            </select>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">Sort</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <select name="GenreSort" class="form-select text-white bg-dark" asp-for="GenreSort" onchange="this.form.submit()">
-                            <option value="">All Genres</option>
-                            @foreach (var item in Enum.GetValues(typeof(BookRental.Models.Genre)))
-                            {
-                                var displayName = (typeof(BookRental.Models.Genre)).GetField(item.ToString())
-                                .GetCustomAttributes(typeof(DisplayAttribute), false)
-                                .SingleOrDefault() is DisplayAttribute displayAttribute ? displayAttribute.Name : item.ToString();
-
-                                <option value="@item">@displayName</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <select name="YearSort" class="form-select text-white bg-dark" asp-for="YearSort" onchange="this.form.submit()">
-                            <option value="">Sort by Year</option>
-                            @for (int year = 1950; year <= DateTime.Now.Year; year++)
-                            {
-                                <option value="@year">@year</option>
-                            }
-                        </select>
-                    </div>
+                </div>
             </form>
+            <hr>
+            <div class="col-md-2">
+                <div class="card mb-4 box-shadow">
+                        <form method="get">
+                            <div class="input-group mb-3">
+                                <select name="LanguageSort" class="form-control" asp-for="LanguageSort" onchange="this.form.submit()">
+                                    <option value="">All Languages</option>
+                                    @foreach (var item in Enum.GetValues(typeof(BookRental.Models.Language)))
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <select name="GenreSort" class="form-control" asp-for="GenreSort" onchange="this.form.submit()">
+                                    <option value="">All Genres</option>
+                                    @foreach (var item in Enum.GetValues(typeof(BookRental.Models.Genre)))
+                                    {
+                                        var displayName = (typeof(BookRental.Models.Genre)).GetField(item.ToString())
+                                        .GetCustomAttributes(typeof(DisplayAttribute), false)
+                                        .SingleOrDefault() is DisplayAttribute displayAttribute ? displayAttribute.Name : item.ToString();
+
+                                        <option value="@item">@displayName</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <select name="YearSort" class="form-control" asp-for="YearSort" onchange="this.form.submit()">
+                                    <option value="">Sort by Year</option>
+                                    @for (int year = 1950; year <= DateTime.Now.Year; year++)
+                                    {
+                                        <option value="@year">@year</option>
+                                    }
+                                </select>
+                            </div>
+                        </form>
+                </div>
+            </div>
 
             <div class="boxes">
                 <div class="book-grid mx-auto">
