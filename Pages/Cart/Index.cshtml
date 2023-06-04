@@ -73,20 +73,21 @@
         </tbody>
 
     </table>
-    @if (Model.CartItems.Count == 0)
-    {
-        <h1>The basket is empty</h1>
-    }
-    <p class="text-danger">
-        <strong>Total Cost:</strong> @Model.TotalCost$
-    </p>
     <!-- Checkout Button -->
-    @if (Model.TotalCost > 0){
+    @if (Model.TotalCost > 0 && SignInManager.IsSignedIn(User))
+    {
+        <p class="text-danger">
+            <strong>Total Cost:</strong> @Model.TotalCost$
+        </p>
         <form method="post" asp-page-handler="Checkout">
             <button type="submit" class="btn btn-primary">
                 Checkout
             </button>
         </form>
+    }
+    else
+    {
+        <h1>Your basket total must be above 0$ and you must be logged in order for the checkout button to appear.</h1>
     }
 
 

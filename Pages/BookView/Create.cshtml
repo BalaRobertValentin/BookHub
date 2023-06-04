@@ -1,81 +1,89 @@
 ﻿@page
-@using BookRental.Models;
 @model BookRental.Pages.Book.CreateModel
-
+@using BookRental.Models;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Create";
 }
 <link rel="stylesheet" href="~/css/CreateBook.css" asp-append-version="true" />
-<h1>Create a new Book</h1>
-<hr />
-<div class="row">
-    <div class="col-md-6 mx-auto">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Books.Title" class="control-label"></label>
-                <input asp-for="Books.Title" class="form-control" />
-                <span asp-validation-for="Books.Title" class="text-danger"></span>
+@if (SignInManager.IsSignedIn(User))
+{
+    @if (UserManager.GetUserAsync(User).Result.Admin == true)
+    {
+        <h1>Create a new Book</h1>
+        <hr />
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Books.Title" class="control-label"></label>
+                        <input asp-for="Books.Title" class="form-control" />
+                        <span asp-validation-for="Books.Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Books.Author" class="control-label"></label>
+                        <input asp-for="Books.Author" class="form-control" />
+                        <span asp-validation-for="Books.Author" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Books.Description" class="control-label"></label>
+                        <input asp-for="Books.Description" class="form-control" />
+                        <span asp-validation-for="Books.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Books.CoverImageUrl" class="control-label"></label>
+                        <input asp-for="Books.CoverImageUrl" class="form-control" />
+                        <span asp-validation-for="Books.CoverImageUrl" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Books.Genre" class="control-label"></label>
+                        <select asp-for="Books.Genre" class="form-control" asp-items="Html.GetEnumSelectList<Genre>()">
+                            <option value="">Select a Genre</option>
+                        </select>
+                        <span asp-validation-for="Books.Genre" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Books.Price" class="control-label"></label>
+                        <input asp-for="Books.Price" class="form-control" />
+                        <span asp-validation-for="Books.Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Books.Publisher" class="control-label"></label>
+                        <input asp-for="Books.Publisher" class="form-control" />
+                        <span asp-validation-for="Books.Publisher" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Books.Year" class="control-label"></label>
+                        <input asp-for="Books.Year" class="form-control" />
+                        <span asp-validation-for="Books.Year" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Books.Pages" class="control-label"></label>
+                        <input asp-for="Books.Pages" class="form-control" />
+                        <span asp-validation-for="Books.Pages" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Books.Language" class="control-label"></label>
+                        <select asp-for="Books.Language" class="form-control" asp-items="Html.GetEnumSelectList<Language>()">
+                            <option value="">Select a Language</option>
+                        </select>
+                        <span asp-validation-for="Books.Language" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="Books.Author" class="control-label"></label>
-                <input asp-for="Books.Author" class="form-control" />
-                <span asp-validation-for="Books.Author" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Books.Description" class="control-label"></label>
-                <input asp-for="Books.Description" class="form-control" />
-                <span asp-validation-for="Books.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Books.CoverImageUrl" class="control-label"></label>
-                <input asp-for="Books.CoverImageUrl" class="form-control" />
-                <span asp-validation-for="Books.CoverImageUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Books.Genre" class="control-label"></label>
-                <select asp-for="Books.Genre" class="form-control" asp-items="Html.GetEnumSelectList<Genre>()">
-                    <option value="">Select a Genre</option>
-                </select>
-                <span asp-validation-for="Books.Genre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Books.Price" class="control-label"></label>
-                <input asp-for="Books.Price" class="form-control" />
-                <span asp-validation-for="Books.Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Books.Publisher" class="control-label"></label>
-                <input asp-for="Books.Publisher" class="form-control" />
-                <span asp-validation-for="Books.Publisher" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Books.Year" class="control-label"></label>
-                <input asp-for="Books.Year" class="form-control" />
-                <span asp-validation-for="Books.Year" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Books.Pages" class="control-label"></label>
-                <input asp-for="Books.Pages" class="form-control" />
-                <span asp-validation-for="Books.Pages" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Books.Language" class="control-label"></label>
-                <select asp-for="Books.Language" class="form-control" asp-items="Html.GetEnumSelectList<Language>()">
-                    <option value="">Select a Language</option>
-                </select>
-                <span asp-validation-for="Books.Language" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+        </div>
 
-<div>
-    <a class="backlist" asp-page="Index">Back to List</a>
-</div>
+        <div>
+            <a class="backlist" asp-page="Index">Back to List</a>
+        </div>
+    }
+}
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -5,7 +5,10 @@
 @{
     ViewData["Title"] = "Index";
 }
+@using Microsoft.AspNetCore.Identity
 @using System.ComponentModel.DataAnnotations
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 <link rel="stylesheet" href="~/css/BrowseBooks.css" asp-append-version="true" />
 
 <body>
@@ -14,7 +17,13 @@
             <div class="row">
                 <div class="col-12">
                     <p>
-                        <a class="btn btn-primary" asp-page="Create">Create New</a>
+                        @if (SignInManager.IsSignedIn(User)){
+                        
+                            @if (UserManager.GetUserAsync(User).Result.Admin == true)
+                            {
+                                <a class="btn btn-primary" asp-page="Create">Create New</a>
+                            }
+                         }
                     </p>
                 </div>
             </div>
@@ -90,7 +99,13 @@
                                     <button type="submit" asp-page-handler="AddToCart" class="details-btn">Buy</button>
                                 </form>
                                 <a class="details-btn" asp-page="./Details" asp-route-id="@item.Id">Details</a>
-                                <a class="delete-btn" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                                @if (SignInManager.IsSignedIn(User)){
+                        
+                                    @if (UserManager.GetUserAsync(User).Result.Admin == true)
+                                    {
+                                        <a class="delete-btn" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                                    }
+                                }
                             </div>
                         </div>
                     }
