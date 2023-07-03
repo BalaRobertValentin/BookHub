@@ -27,12 +27,15 @@ namespace BookRental.Pages.FavoriteItem
         public async Task OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            if (user != null)
             {
-                throw new Exception($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                
+                FavoriteItems = await _context.FavoriteItems.Include(f => f.Book).Where(f => f.UserId == user.Id).ToListAsync();
             }
+            //throw new Exception($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
 
-            FavoriteItems = await _context.FavoriteItems.Include(f => f.Book).Where(f => f.UserId == user.Id).ToListAsync();
+
+
         }
         public async Task<IActionResult> OnPostAddToFavoritesAsync(int bookId)
         {
