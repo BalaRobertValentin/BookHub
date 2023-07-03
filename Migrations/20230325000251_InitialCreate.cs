@@ -20,12 +20,12 @@ namespace BookRental.Migrations
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CoverImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Genre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Genre = table.Column<int>(type: "int", nullable: false),
                     RentalPrice = table.Column<float>(type: "real", nullable: false),
                     Publisher = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Year = table.Column<int>(type: "int", nullable: false),
                     Pages = table.Column<int>(type: "int", nullable: false),
-                    Language = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Language = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
